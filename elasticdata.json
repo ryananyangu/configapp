@@ -1,0 +1,133 @@
+ 
+{
+  "client": {
+    "id": 1,
+    "requestType": "XML",
+    "hasCertificate": false,
+    "certificate": "",
+    "clientName": "MZ_TOPUP_RETAIL",
+    "apiConnection": "HTTP",
+    "date_created": "2019-11-16T07:19:56.250660+00:00",
+    "date_modified": "2019-11-16T07:19:56.250749+00:00"
+  },
+  "serviceID": "1912",
+  "serviceCode": "MZ_AGUASPOSTPAID",
+  "process": [
+    {
+      "request": {
+        "id": 3,
+        "requestDestinationClient_id": 1,
+        "uri": "https://topupretail.com:18880/Service.asmx?WSDL",
+        "requestTemplate": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://topupretail.com/\"><SOAP-ENV:Body><ns1:AquaPayment><ns1:req><ns1:terminalMsgID>{0}</ns1:terminalMsgID><ns1:terminalID>{1}</ns1:terminalID><ns1:msgID>{2}</ns1:msgID><ns1:authCred><ns1:opName>{3}</ns1:opName><ns1:password>{4}</ns1:password></ns1:authCred><ns1:clientNumber>{5}</ns1:clientNumber><ns1:entityNumber>{6}</ns1:entityNumber><ns1:documentTypeID>{7}</ns1:documentTypeID><ns1:documentYear>{8}</ns1:documentYear><ns1:documentNumber>{9}</ns1:documentNumber><ns1:clientName>{10}</ns1:clientName><ns1:purchaseValue>{11}</ns1:purchaseValue><ns1:receiptFormat>{12}</ns1:receiptFormat><ns1:terminalLocation/><ns1:terminalChannel>{13}</ns1:terminalChannel><ns1:terminalCompanyName>{14}</ns1:terminalCompanyName><ns1:terminalOperator>{15}</ns1:terminalOperator></ns1:req></ns1:AquaPayment></SOAP-ENV:Body></SOAP-ENV:Envelope>",
+        "date_created": "2019-11-16T07:35:12.844533+00:00",
+        "date_modified": "2019-11-16T09:45:50.874511+00:00",
+        "successResponseKey": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->hasFault",
+        "successExpectedValue": "False"
+      },
+      "response": [
+        {
+          "id": 1,
+          "request_id": 3,
+          "KeyName": "narration",
+          "isArray": false,
+          "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt",
+          "date_created": "2019-11-16T09:02:37.522772+00:00",
+          "date_modified": "2019-11-16T09:02:37.522789+00:00"
+        },
+        {
+          "id": 2,
+          "request_id": 3,
+          "KeyName": "receiptNumber",
+          "isArray": false,
+          "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->receipt",
+          "date_created": "2019-11-16T09:04:06.840257+00:00",
+          "date_modified": "2019-11-16T09:04:06.840275+00:00"
+        },
+        {
+          "id": 3,
+          "request_id": 3,
+          "KeyName": "statusDescription",
+          "isArray": false,
+          "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt",
+          "date_created": "2019-11-16T09:05:27.229653+00:00",
+          "date_modified": "2019-11-16T09:05:27.229693+00:00"
+        }
+      ],
+      "headers": [
+        {
+          "headers__key": "Content-Type",
+          "headers__value": "text/xml;charset=UTF-8"
+        }
+      ],
+      "valueMaps": [
+        {
+          "payloadkey__KeyName": "accountNumber",
+          "placeholder": "{5}"
+        },
+        {
+          "payloadkey__KeyName": "amount",
+          "placeholder": "{11}"
+        },
+        {
+          "payloadkey__KeyName": "paymentExtraData",
+          "placeholder": "{10}$clientName"
+        },
+        {
+          "payloadkey__KeyName": "paymentExtraData",
+          "placeholder": "{8}$documentYear"
+        },
+        {
+          "payloadkey__KeyName": "paymentExtraData",
+          "placeholder": "{7}$documentTypeID"
+        },
+        {
+          "payloadkey__KeyName": "paymentExtraData",
+          "placeholder": "{9}$documentNumber"
+        },
+        {
+          "payloadkey__KeyName": "paymentExtraData",
+          "placeholder": "{6}$entityNumber"
+        },
+        {
+          "payloadkey__KeyName": "beepTransactionID",
+          "placeholder": "{2}"
+        },
+        {
+          "payloadkey__KeyName": "beepTransactionID",
+          "placeholder": "{0}"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{15}$OPERATOR"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{14}$COMPANYNAME"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{4}$PASSWORD"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{13}$CHANNEL"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{12}$RECEIPT_FORMAT"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{3}$OPNAME"
+        },
+        {
+          "payloadkey__KeyName": "STATICS",
+          "placeholder": "{1}$TERMINAL_ID"
+        }
+      ],
+      "priority": 0,
+      "isFinal": true,
+      "processName": "postpayment"
+    }
+  ]
+}

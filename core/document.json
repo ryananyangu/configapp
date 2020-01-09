@@ -1,0 +1,49 @@
+{
+    "serviceCode": {
+      "client": {
+        "requestType": "",
+        "hasCertificate": false,
+        "clientName": "",
+        "certificate": null,
+        "statics": [
+          {
+            "key": "",
+            "value": ""
+          }
+        ]
+      },
+      "process": [
+        {
+          "request": {
+            "url": "",
+            "template": "",
+            "successValue": "",
+            "successKey": ""
+            
+          },
+          "valueMaps": [
+              {
+                "payloadKey": "",
+                "placeholder": ""
+              }
+            ],
+            "response": [
+              {
+                "keyname": "",
+                "isArray": false,
+                "valueKeyName": ""
+              }
+            ],
+            "headers": [
+              {
+                "key": "",
+                "value": ""
+              }
+            ],
+          "priority": 0,
+          "isFinal": true,
+          "processName": "POST"
+        }
+      ]
+    }
+  }

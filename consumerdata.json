@@ -1,0 +1,16 @@
+{
+	"accountNumber":"10001100",
+	"amount":"100.00",
+	"paymentExtraData":"",
+	"serviceCode":"MZNTEST",
+	"payerClientCode":"BBMZ",
+	"beepTransactionID":"101034",
+	"MSISDN":"245723000000",
+	"serviceID":"1912",
+	"narration":"User Input Required",
+	"paymentID":"984756",
+	"currencyCode":"MZN",
+	"customerName":"Ryan Ashiruma",
+	"payerClientID":"1274",
+	"payerTransactionID":"1982"
+}
