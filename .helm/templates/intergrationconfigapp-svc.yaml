@@ -28,7 +28,7 @@ spec:
         - name: ESPORT
           value: "9200"
         - name: DEBUG
-          value: 0
+          value: "0"
 ---
 apiVersion: v1
 kind: Service
