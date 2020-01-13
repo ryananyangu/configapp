@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - name: "{{ .Chart.Name }}"
+      nodeSelector:
+        share: all
 {{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_image | indent 8 }}
         env:
 {{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_env | indent 8 }}
