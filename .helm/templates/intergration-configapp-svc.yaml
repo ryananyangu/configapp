@@ -29,19 +29,26 @@ spec:
           value: "9200"
         - name: DEBUG
           value: 0
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: "{{ .Chart.Name }}"
-#   labels:
-#     chart: "{{ .Chart.Name }}"
-# spec:
-#   type: ClusterIP
-#   selector:
-#     service: "{{ .Chart.Name }}"
-#   ports:
-#   - name: http
-#     port: 8080
-#     targetPort: 8080
-#     protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind:  Mapping
+      name: "{{ .Chart.Name }}-{{.Release.Namespace}}"
+      prefix: /
+      service: "{{ .Chart.Name }}.{{.Release.Namespace}}:8080"
+      host: "{{ .Chart.Name }}-{{.Release.Namespace}}.cellulant.co.ke"
+spec:
+  type: NodePort
+  selector:
+    service: {{ .Chart.Name }}
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
