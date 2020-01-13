@@ -16,26 +16,19 @@ spec:
     spec:
       containers:
       - name: "{{ .Chart.Name }}"
-{{ tuple "consumer-%%%CI_PIPELINE_ID%%%" . | werf_container_image | indent 8 }}
+{{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_image | indent 8 }}
         env:
-{{ tuple "consumer-%%%CI_PIPELINE_ID%%%" . | werf_container_env | indent 8 }}
-        - name: SPRING_DATASOURCE_URL
-          value: "jdbc:mysql://mysql-{{.Release.Namespace}}.share-{{.Release.Namespace}}.svc.cluster.local:3306/tingg"
-        - name: SPRING_DATASOURCE_USERNAME
-          value: "tingg"
-        - name: SPRING_DATASOURCE_PASSWORD
-          value: "tingg"
-        - name: SPRING_PROFILES_ACTIVE
-          value: "worker"
-        - name: SPRING_RABBITMQ_HOST
-          value: "rmq-{{.Release.Namespace}}-rabbitmq.share-{{.Release.Namespace}}.svc.cluster.local"
-        - name: SPRING_RABBITMQ_USERNAME
-          value: "user"
-        - name: SPRING_RABBITMQ_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: rabbitmq-password
-              name: rmq-{{.Release.Namespace}}-rabbitmq
+{{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_env | indent 8 }}
+        - name: DATABASE_URL
+          value: "postgresql://conf_user:z2rQUyX6WfJNqtuh@integrations_confdb/confdb"
+        - name: SECRET_KEY
+          value: "%)i)j3#96ad(t%5kk7zb1n__lt-gj=^c*0(1sd1=7wgx_n)vos"
+        - name: ESHOST
+          value: "integrations_elasticsearch"
+        - name: ESPORT
+          value: "9200"
+        - name: DEBUG
+          value: 0
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
