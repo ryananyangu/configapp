@@ -1,0 +1,211 @@
+variables:
+  WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/bulkpurchase
+  WERF_IMAGES_REPO_MODE: monorepo
+  WERF_THREE_WAY_MERGE_MODE: enabled
+  APP_NAME: bulkpurchaseworker
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - build
+  - test
+  - deploy
+  - post_deploy
+  - cleanup
+
+.before_script_template: &before_script_template
+  before_script:
+    - sed -i "s/%%%CI_PIPELINE_ID%%%/${CI_PIPELINE_ID}/g" werf.yaml
+    - sed -i "s/%%%CI_PIPELINE_ID%%%/${CI_PIPELINE_ID}/g" .helm/templates/bulkpurchase-worker-svc.yaml
+    - docker info
+    - $(aws ecr get-login --no-include-email --region us-east-2)
+    - type multiwerf && . $(multiwerf use 1.0 stable --as-file)
+    - type werf && source <(werf ci-env gitlab --tagging-strategy tag-or-branch --verbose)
+
+.base_deploy: &base_deploy
+  <<: *before_script_template
+  stage: deploy
+  script:
+    ## Next command makes deploy and will be discussed further --env=CI_BUILD_REF_NAME 
+    - werf deploy --stages-storage :local --set "global.ci_url=$(echo ${CI_ENVIRONMENT_URL} | cut -d / -f 3)"
+       --three-way-merge-mode enabled --env $CI_COMMIT_REF_SLUG --namespace $(echo ${K8_NAMESPACE})
+       
+  ## It is important that the deploy stage depends on the build stage. If the build stage fails, deploy stage should not start.
+  dependencies:
+    - Build
+  tags:
+    - werf
+
+Build:
+  <<: *before_script_template
+  stage: build
+  script:
+    - werf build-and-publish --stages-storage :local
+  tags:
+    - werf
+  except:
+    - schedules
+
+Test:
+  stage: test
+  script:
+   - echo "Put test suite here."
+  only:
+    - merge_requests
+
+# Review:
+#   <<: *base_deploy
+#   variables:
+#     K8_NAMESPACE: testing
+#   environment:
+#     name: testing/${CI_COMMIT_REF_SLUG}
+#     url: https://${CI_PROJECT_NAME}-testing.cellulant.co.ke
+#     on_stop: Stop review
+#   only:
+#     - branches
+#   except:
+#     - master
+#     - approval
+#     - production
+#     - schedules
+
+# Stop review:
+#   variables:
+#     K8_NAMESPACE: testing
+#   stage: deploy
+#   script:
+#     - type multiwerf && source <(multiwerf use 1.0 beta)
+#     - type werf && source <(werf ci-env gitlab --tagging-strategy tag-or-branch --verbose)
+#     - werf dismiss --release $(echo ${APP_NAME})-${CI_COMMIT_REF_SLUG} --namespace $(echo ${K8_NAMESPACE})
+#   environment:
+#     name: testing/${CI_COMMIT_REF_SLUG}
+#     action: stop
+#   tags:
+#     - werf
+#   only:
+#     - branches
+#   except:
+#     - master
+#     - approval
+#     - production
+#     - schedules
+#   when: manual
+
+Deploy to Development:
+  <<: *base_deploy
+  variables:
+    K8_NAMESPACE: development
+    SERVICE_NAME: ${APP_NAME}
+  environment:
+    name: development
+  only:
+    - master
+  except:
+    - schedules
+
+Deploy to Approval:
+  <<: *base_deploy
+  variables:
+    K8_NAMESPACE: approval
+    SERVICE_NAME: ${APP_NAME}
+  environment:
+    name: approval
+  only:
+    - approval
+  except:
+    - schedules
+
+Deploy to Production:
+  <<: *base_deploy
+  variables:
+    K8_NAMESPACE: production
+    SERVICE_NAME: ${APP_NAME}
+  environment:
+    name: production
+  only:
+    - production
+  except:
+    - schedules
+  # when: manual
+
+Tag-after-deployment:
+  variables:
+    CI_COMMIT_TITLE: ~ /^[0-9]+.[0-9]+.[0-9]+(-[0-9]+)?$/
+  only:
+    - production
+  except:
+    - tags
+    - schedules
+  stage: post_deploy
+  # image: debian:stable
+  image: node:8.16-jessie
+  before_script:
+    - apt-get clean -qq
+    - apt-get update -qq --fix-missing
+    - apt-get install jq
+    - npm install -g conventional-changelog-cli
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "${GITLAB_PERSONAL_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan git.prod.cellulant.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - export VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")
+    - git config --global user.name "${GITLAB_USER_NAME}"
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git remote set-url origin "https://${GL_USER}:${GITLAB_PERSONAL_TOKEN}@git.prod.cellulant.com/gdt/global-app/bulk-purchase/backend-processor.git"
+    - git remote -v
+  script:
+    - >
+      if [ "$CI_COMMIT_REF_SLUG" == "approval" ]; then
+        export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
+        git tag -a "v${VERSION}-pre${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
+        git push origin --tags
+        # conventional-changelog -i CHANGELOG.md -s
+        # git config --global push.default simple
+        # git add CHANGELOG.md  
+        # git commit -am "docs(ci):Added CHANGELOG"
+        # git push origin HEAD:$CI_COMMIT_REF_SLUG
+      else
+        export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
+        git tag -a "v${VERSION}-PROD-${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
+        git push origin --tags
+        # conventional-changelog -i CHANGELOG.md -s
+        # git config --global push.default simple
+        # git add CHANGELOG.md  
+        # git commit -am "docs(ci):Added CHANGELOG"
+        # git push origin HEAD:$CI_COMMIT_REF_SLUG
+      fi
+  tags:
+    - job-pipeline 
+
+# Generate-release-note:
+#   variables:
+#     CI_COMMIT_TITLE: ~ /^[0-9]+.[0-9]+.[0-9]+(-[0-9]+)?$/
+#   only:
+#     - tags
+#   except:
+#     - schedules
+#   stage: post_deploy
+#   image: docker:stable
+#   services:
+#     - docker:dind
+#   script:
+#     - docker container run -e GITLAB_PERSONAL_TOKEN=${GITLAB_ACCESS_TOKEN} -e GITLAB_PROJECT_ID=${CI_PROJECT_ID} 00freezy00/gitlab-release-note-generator
+#   when: manual
+#   tags:
+#     -  job-pipeline 
+
+Cleanup:
+  <<: *before_script_template
+  stage: cleanup
+  variables:
+    WERF_GIT_TAG_STRATEGY_LIMIT: 2
+    WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/bulkpurchase
+  script:
+    - werf cleanup --stages-storage :local --images-repo $WERF_IMAGES_REPO
+    # - docker run --rm --userns host -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc
+  only:
+    - schedules
+  tags:
+    - werf
