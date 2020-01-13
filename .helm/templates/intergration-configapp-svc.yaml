@@ -20,25 +20,15 @@ spec:
         env:
 {{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_env | indent 8 }}
         - name: DATABASE_URL
-          value: "postgresql://conf_user:z2rQUyX6WfJNqtuh@integrations_confdb/confdb"
+          value: "postgresql://postgres:joU2FxKxuO@pg-testing-postgresql.share-testing.svc.cluster.local/confdb"
         - name: SECRET_KEY
           value: "%)i)j3#96ad(t%5kk7zb1n__lt-gj=^c*0(1sd1=7wgx_n)vos"
         - name: ESHOST
-          value: "integrations_elasticsearch"
+          value: "elastic-testing-elasticsearch-client.share-testing.svc"
         - name: ESPORT
           value: "9200"
         - name: DEBUG
           value: 0
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              key: AWS_ACCESS_KEY_ID
-              name: aws-prod-keys
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              key: AWS_SECRET_ACCESS_KEY
-              name: aws-prod-keys
 # ---
 # apiVersion: v1
 # kind: Service
