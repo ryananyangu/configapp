@@ -15,7 +15,7 @@ stages:
 .before_script_template: &before_script_template
   before_script:
     - sed -i "s/%%%CI_PIPELINE_ID%%%/${CI_PIPELINE_ID}/g" werf.yaml
-    - sed -i "s/%%%CI_PIPELINE_ID%%%/${CI_PIPELINE_ID}/g" .helm/templates/bulkpurchase-worker-svc.yaml
+    - sed -i "s/%%%CI_PIPELINE_ID%%%/${CI_PIPELINE_ID}/g" .helm/templates/${APP_NAME}-svc.yaml
     - docker info
     - $(aws ecr get-login --no-include-email --region us-east-2)
     - type multiwerf && . $(multiwerf use 1.0 stable --as-file)
