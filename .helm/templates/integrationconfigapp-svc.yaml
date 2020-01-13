@@ -45,6 +45,11 @@ spec:
               name: aws-prod-keys
       nodeSelector:
         share: "all"
+      tolerations:
+      - key: "share"
+        value: "all"
+        operator: "Equal"
+        effect: "NoSchedule"
 ---
 apiVersion: v1
 kind: Service
