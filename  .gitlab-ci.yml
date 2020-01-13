@@ -1,8 +1,8 @@
 variables:
-  WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/bulkpurchase
+  WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/integration
   WERF_IMAGES_REPO_MODE: monorepo
   WERF_THREE_WAY_MERGE_MODE: enabled
-  APP_NAME: bulkpurchaseworker
+  APP_NAME: intergrationconfigapp
   DOCKER_TLS_CERTDIR: ""
 
 stages:
@@ -201,7 +201,7 @@ Cleanup:
   stage: cleanup
   variables:
     WERF_GIT_TAG_STRATEGY_LIMIT: 2
-    WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/bulkpurchase
+    WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/intergration
   script:
     - werf cleanup --stages-storage :local --images-repo $WERF_IMAGES_REPO
     # - docker run --rm --userns host -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc
