@@ -28,4 +28,4 @@ RUN chmod 755 -R .
 RUN chmod 777 -R static/
 # EXPOSE 8080
 
-CMD run_web.sh
+CMD ["sh","run_web.sh"]
