@@ -1,0 +1,6 @@
+project: intergrationconsumer
+configVersion: 1
+---
+image: consumer-%%%CI_PIPELINE_ID%%%
+dockerfile: Dockerfile
+context: .
