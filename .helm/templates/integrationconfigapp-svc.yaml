@@ -16,8 +16,6 @@ spec:
     spec:
       containers:
       - name: "{{ .Chart.Name }}"
-      nodeSelector:
-        share: "all"
 {{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_image | indent 8 }}
         env:
 {{ tuple "config-%%%CI_PIPELINE_ID%%%" . | werf_container_env | indent 8 }}
@@ -45,7 +43,8 @@ spec:
             secretKeyRef:
               key: AWS_SECRET_ACCESS_KEY
               name: aws-prod-keys
-
+      nodeSelector:
+        share: "all"
 ---
 apiVersion: v1
 kind: Service
