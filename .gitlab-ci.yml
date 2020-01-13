@@ -127,57 +127,57 @@ Deploy to Production:
     - schedules
   # when: manual
 
-Tag-after-deployment:
-  variables:
-    CI_COMMIT_TITLE: ~ /^[0-9]+.[0-9]+.[0-9]+(-[0-9]+)?$/
-  only:
-    - production
-  except:
-    - tags
-    - schedules
-  stage: post_deploy
-  # image: debian:stable
-  image: node:8.16-jessie
-  before_script:
-    - apt-get clean -qq
-    - apt-get update -qq --fix-missing
-    - apt-get install jq
-    - npm install -g conventional-changelog-cli
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - echo "${GITLAB_PERSONAL_KEY}" | tr -d '\r' | ssh-add - > /dev/null
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan git.prod.cellulant.com >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    - export VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")
-    - git config --global user.name "${GITLAB_USER_NAME}"
-    - git config --global user.email "${GITLAB_USER_EMAIL}"
-    - git remote set-url origin "https://${GL_USER}:${GITLAB_PERSONAL_TOKEN}@git.prod.cellulant.com/gdt/global-app/bulk-purchase/backend-processor.git"
-    - git remote -v
-  script:
-    - >
-      if [ "$CI_COMMIT_REF_SLUG" == "approval" ]; then
-        export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
-        git tag -a "v${VERSION}-pre${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
-        git push origin --tags
-        # conventional-changelog -i CHANGELOG.md -s
-        # git config --global push.default simple
-        # git add CHANGELOG.md  
-        # git commit -am "docs(ci):Added CHANGELOG"
-        # git push origin HEAD:$CI_COMMIT_REF_SLUG
-      else
-        export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
-        git tag -a "v${VERSION}-PROD-${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
-        git push origin --tags
-        # conventional-changelog -i CHANGELOG.md -s
-        # git config --global push.default simple
-        # git add CHANGELOG.md  
-        # git commit -am "docs(ci):Added CHANGELOG"
-        # git push origin HEAD:$CI_COMMIT_REF_SLUG
-      fi
-  tags:
-    - job-pipeline 
+# Tag-after-deployment:
+#   variables:
+#     CI_COMMIT_TITLE: ~ /^[0-9]+.[0-9]+.[0-9]+(-[0-9]+)?$/
+#   only:
+#     - production
+#   except:
+#     - tags
+#     - schedules
+#   stage: post_deploy
+#   # image: debian:stable
+#   image: node:8.16-jessie
+#   before_script:
+#     - apt-get clean -qq
+#     - apt-get update -qq --fix-missing
+#     - apt-get install jq
+#     - npm install -g conventional-changelog-cli
+#     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+#     - eval $(ssh-agent -s)
+#     - echo "${GITLAB_PERSONAL_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+#     - mkdir -p ~/.ssh
+#     - chmod 700 ~/.ssh
+#     - ssh-keyscan git.prod.cellulant.com >> ~/.ssh/known_hosts
+#     - chmod 644 ~/.ssh/known_hosts
+#     - export VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")
+#     - git config --global user.name "${GITLAB_USER_NAME}"
+#     - git config --global user.email "${GITLAB_USER_EMAIL}"
+#     - git remote set-url origin "https://${GL_USER}:${GITLAB_PERSONAL_TOKEN}@git.prod.cellulant.com/gdt/global-app/bulk-purchase/backend-processor.git"
+#     - git remote -v
+#   script:
+#     - >
+#       if [ "$CI_COMMIT_REF_SLUG" == "approval" ]; then
+#         export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
+#         git tag -a "v${VERSION}-pre${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
+#         git push origin --tags
+#         # conventional-changelog -i CHANGELOG.md -s
+#         # git config --global push.default simple
+#         # git add CHANGELOG.md  
+#         # git commit -am "docs(ci):Added CHANGELOG"
+#         # git push origin HEAD:$CI_COMMIT_REF_SLUG
+#       else
+#         export CHANGE_LOG=$(conventional-changelog -p jsjc -i CHANGELOG.md)
+#         git tag -a "v${VERSION}-PROD-${CI_PIPELINE_ID}" ${CI_COMMIT_SHA} -m "${VERSION} | ${CI_PIPELINE_ID} | ${CI_COMMIT_MESSAGE} -m ${CHANGE_LOG}"
+#         git push origin --tags
+#         # conventional-changelog -i CHANGELOG.md -s
+#         # git config --global push.default simple
+#         # git add CHANGELOG.md  
+#         # git commit -am "docs(ci):Added CHANGELOG"
+#         # git push origin HEAD:$CI_COMMIT_REF_SLUG
+#       fi
+#   tags:
+#     - job-pipeline 
 
 # Generate-release-note:
 #   variables:
