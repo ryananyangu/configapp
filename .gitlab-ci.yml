@@ -1,0 +1,6 @@
+variables:
+  WERF_IMAGES_REPO: 102430194655.dkr.ecr.us-east-2.amazonaws.com/integration
+  WERF_IMAGES_REPO_MODE: monorepo
+  WERF_THREE_WAY_MERGE_MODE: enabled
+  APP_NAME: intergrationconfigapp
+  DOCKER_TLS_CERTDIR: ""
