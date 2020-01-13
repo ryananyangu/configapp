@@ -29,6 +29,21 @@ spec:
           value: "9200"
         - name: DEBUG
           value: "0"
+        - name: AWS_STORAGE_BUCKET_NAME
+          value: "eks-dtap-shared"
+        - name: AWS_S3_ENDPOINT_URL
+          value: "http://eks-dtap-shared.s3-website.us-east-2.amazonaws.com/"
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: aws-prod-keys
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: aws-prod-keys
+
 ---
 apiVersion: v1
 kind: Service
