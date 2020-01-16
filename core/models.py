@@ -19,11 +19,11 @@ class ClientApiSetup(models.Model):
         verbose_name_plural = "ClientApiSetups"
 
 
-    requestType = models.CharField(max_length=32,blank=False, null=False,unique=True,db_index=True,choices=REQUEST_TYPE)
+    requestType = models.CharField(max_length=32,blank=False, null=False,db_index=True,choices=REQUEST_TYPE)
     hasCertificate = models.BooleanField(default=False)
     certificate = models.FileField(upload_to=".", max_length=100,null=True,blank=True)
     clientName = models.CharField(max_length=32,blank=False, null=False,unique=True,db_index=True)
-    apiConnection = models.CharField(max_length=32,blank=False, null=False,unique=True,db_index=True,choices=API_CONNECTION_TYPE)
+    apiConnection = models.CharField(max_length=32,blank=False, null=False,db_index=True,choices=API_CONNECTION_TYPE)
     date_created = models.DateTimeField(auto_now_add=True,db_index=True)
     date_modified = models.DateTimeField(auto_now=True)
 
