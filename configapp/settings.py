@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '%)i)j3#96ad(t%5kk7zb1n__lt-gj=^c*0(1sd1=7wgx_n)vos'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '%)i)j3#96ad(t%5kk7zb1n__lt-gj=^c*0(1sd1=7wgx_n)vos'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
@@ -147,23 +147,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = os.getenv('STATIC_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('STATIC_SECRET_KEY')
-AWS_S3_REGION_NAME="us-east-2"
+# AWS_ACCESS_KEY_ID = os.getenv('STATIC_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('STATIC_SECRET_KEY')
+# AWS_S3_REGION_NAME="us-east-2"
 
-# AWS_STORAGE_BUCKET_NAME = os.getenv('STATIC_BUCKET_NAME')
-AWS_STORAGE_BUCKET_NAME = "eks-dtap-shared"
-AWS_S3_ENDPOINT_URL = os.getenv('STATIC_ENDPOINT_URL')
+# # AWS_STORAGE_BUCKET_NAME = os.getenv('STATIC_BUCKET_NAME')
+# AWS_STORAGE_BUCKET_NAME = "eks-dtap-shared"
+# AWS_S3_ENDPOINT_URL = os.getenv('STATIC_ENDPOINT_URL')
 
-AWS_AUTO_CREATE_BUCKET=True
+# AWS_AUTO_CREATE_BUCKET=True
 
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': 'max-age=86400',
+# }
+# AWS_LOCATION = 'static'
 AWS_DEFAULT_ACL = 'public-read'
 
-STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+STATIC_URL = os.path.join(BASE_DIR, "static/")
+#'{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 STATIC_ROOT = 'static/'

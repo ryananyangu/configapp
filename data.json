@@ -1,1 +1,512 @@
-[{"model": "core.clientapisetup", "pk": 1, "fields": {"requestType": "JSON", "hasCertificate": false, "certificate": "", "clientName": "TEST_JOVIXE", "apiConnection": "HTTP", "date_created": "2019-12-01T09:25:28.879Z", "date_modified": "2019-12-01T09:25:28.879Z"}}, {"model": "core.httpheaders", "pk": 1, "fields": {"key": "Content-Type", "value": "application/json", "date_created": "2019-12-01T09:53:44.352Z", "date_modified": "2019-12-01T09:53:44.352Z"}}, {"model": "core.httpheaders", "pk": 2, "fields": {"key": "Content-Type", "value": "text/xml;charset=UTF-8", "date_created": "2019-12-01T09:53:50.574Z", "date_modified": "2019-12-01T09:53:50.574Z"}}, {"model": "core.requests", "pk": 1, "fields": {"requestDestinationClient": 1, "uri": "https://topupretail.com:18880/Service.asmx?WSDL", "requestTemplate": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://topupretail.com/\"><SOAP-ENV:Body><ns1:AquaPayment><ns1:req><ns1:terminalMsgID>{0}</ns1:terminalMsgID><ns1:terminalID>{1}</ns1:terminalID><ns1:msgID>{2}</ns1:msgID><ns1:authCred><ns1:opName>{3}</ns1:opName><ns1:password>{4}</ns1:password></ns1:authCred><ns1:clientNumber>{5}</ns1:clientNumber><ns1:entityNumber>{6}</ns1:entityNumber><ns1:documentTypeID>{7}</ns1:documentTypeID><ns1:documentYear>{8}</ns1:documentYear><ns1:documentNumber>{9}</ns1:documentNumber><ns1:clientName>{10}</ns1:clientName><ns1:purchaseValue>{11}</ns1:purchaseValue><ns1:receiptFormat>{12}</ns1:receiptFormat><ns1:terminalLocation/><ns1:terminalChannel>{13}</ns1:terminalChannel><ns1:terminalCompanyName>{14}</ns1:terminalCompanyName><ns1:terminalOperator>{15}</ns1:terminalOperator></ns1:req></ns1:AquaPayment></SOAP-ENV:Body></SOAP-ENV:Envelope>", "date_created": "2019-12-01T09:37:34.607Z", "date_modified": "2019-12-01T09:37:34.607Z", "successResponseKey": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->hasFault", "successExpectedValue": "False"}}, {"model": "core.payloadkeys", "pk": 1, "fields": {"KeyName": "beepTransactionID", "Description": "", "date_created": "2019-12-01T09:30:46.852Z", "date_modified": "2019-12-01T09:30:46.852Z"}}, {"model": "core.payloadkeys", "pk": 2, "fields": {"KeyName": "narration", "Description": "", "date_created": "2019-12-01T09:30:54.760Z", "date_modified": "2019-12-01T09:30:54.760Z"}}, {"model": "core.payloadkeys", "pk": 3, "fields": {"KeyName": "accountNumber", "Description": "", "date_created": "2019-12-01T09:30:59.523Z", "date_modified": "2019-12-01T09:30:59.523Z"}}, {"model": "core.payloadkeys", "pk": 4, "fields": {"KeyName": "customerName", "Description": "", "date_created": "2019-12-01T09:31:04.375Z", "date_modified": "2019-12-01T09:31:04.375Z"}}, {"model": "core.payloadkeys", "pk": 5, "fields": {"KeyName": "amount", "Description": "", "date_created": "2019-12-01T09:31:08.766Z", "date_modified": "2019-12-01T09:31:08.766Z"}}, {"model": "core.payloadkeys", "pk": 6, "fields": {"KeyName": "paymentExtraData", "Description": "", "date_created": "2019-12-01T09:31:13.634Z", "date_modified": "2019-12-01T09:31:13.634Z"}}, {"model": "core.payloadkeys", "pk": 7, "fields": {"KeyName": "currencyCode", "Description": "", "date_created": "2019-12-01T09:32:06.358Z", "date_modified": "2019-12-01T09:32:06.358Z"}}, {"model": "core.payloadkeys", "pk": 8, "fields": {"KeyName": "MSISDN", "Description": "", "date_created": "2019-12-01T09:32:14.080Z", "date_modified": "2019-12-01T09:32:14.080Z"}}, {"model": "core.payloadkeys", "pk": 9, "fields": {"KeyName": "STATICS", "Description": "", "date_created": "2019-12-01T09:32:20.088Z", "date_modified": "2019-12-01T09:32:20.088Z"}}, {"model": "core.payloadkeys", "pk": 10, "fields": {"KeyName": "payerClientCode", "Description": "", "date_created": "2019-12-01T09:33:25.422Z", "date_modified": "2019-12-01T09:33:25.422Z"}}, {"model": "core.payloadkeys", "pk": 11, "fields": {"KeyName": "payerClientID", "Description": "", "date_created": "2019-12-01T09:33:31.332Z", "date_modified": "2019-12-01T09:33:31.332Z"}}, {"model": "core.payloadkeys", "pk": 12, "fields": {"KeyName": "paymentID", "Description": "", "date_created": "2019-12-01T09:33:49.272Z", "date_modified": "2019-12-01T09:33:49.272Z"}}, {"model": "core.payloadkeys", "pk": 13, "fields": {"KeyName": "payerTransactionID", "Description": "", "date_created": "2019-12-01T09:33:56.748Z", "date_modified": "2019-12-01T09:33:56.748Z"}}, {"model": "core.payloadkeys", "pk": 14, "fields": {"KeyName": "serviceID", "Description": "", "date_created": "2019-12-01T09:34:13.301Z", "date_modified": "2019-12-01T09:34:13.301Z"}}, {"model": "core.payloadkeys", "pk": 15, "fields": {"KeyName": "serviceCode", "Description": "", "date_created": "2019-12-01T09:34:24.055Z", "date_modified": "2019-12-01T09:34:24.055Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 1, "fields": {"request": 1, "payloadkey": 1, "placeholder": "{2}", "date_created": "2019-12-01T09:40:11.856Z", "date_modified": "2019-12-01T09:40:11.856Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 2, "fields": {"request": 1, "payloadkey": 1, "placeholder": "{0}", "date_created": "2019-12-01T09:40:32.018Z", "date_modified": "2019-12-01T09:40:32.018Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 3, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{15}$OPERATOR", "date_created": "2019-12-01T09:41:01.129Z", "date_modified": "2019-12-01T09:41:01.129Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 4, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{14}$COMPANYNAME", "date_created": "2019-12-01T09:41:58.573Z", "date_modified": "2019-12-01T09:41:58.573Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 5, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{13}$CHANNEL", "date_created": "2019-12-01T09:42:14.553Z", "date_modified": "2019-12-01T09:42:14.553Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 6, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{12}$RECEIPT_FORMAT", "date_created": "2019-12-01T09:42:33.898Z", "date_modified": "2019-12-01T09:42:33.898Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 7, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{4}$PASSWORD", "date_created": "2019-12-01T09:42:58.832Z", "date_modified": "2019-12-01T09:42:58.832Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 8, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{3}$OPNAME", "date_created": "2019-12-01T09:43:16.045Z", "date_modified": "2019-12-01T09:43:16.045Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 9, "fields": {"request": 1, "payloadkey": 9, "placeholder": "{1}$TERMINAL_ID", "date_created": "2019-12-01T09:44:08.582Z", "date_modified": "2019-12-01T09:44:08.582Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 10, "fields": {"request": 1, "payloadkey": 6, "placeholder": "{6}$entityNumber", "date_created": "2019-12-01T09:44:56.257Z", "date_modified": "2019-12-01T09:45:38.457Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 11, "fields": {"request": 1, "payloadkey": 6, "placeholder": "{9}$documentNumber", "date_created": "2019-12-01T09:45:21.241Z", "date_modified": "2019-12-01T09:45:21.241Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 12, "fields": {"request": 1, "payloadkey": 6, "placeholder": "{7}$documentTypeID", "date_created": "2019-12-01T09:46:23.391Z", "date_modified": "2019-12-01T09:46:23.391Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 13, "fields": {"request": 1, "payloadkey": 6, "placeholder": "{8}$documentYear", "date_created": "2019-12-01T09:46:40.922Z", "date_modified": "2019-12-01T09:46:40.922Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 14, "fields": {"request": 1, "payloadkey": 6, "placeholder": "{10}$clientName", "date_created": "2019-12-01T09:47:21.981Z", "date_modified": "2019-12-01T09:47:21.981Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 15, "fields": {"request": 1, "payloadkey": 5, "placeholder": "{11}", "date_created": "2019-12-01T09:47:30.611Z", "date_modified": "2019-12-01T09:47:30.611Z"}}, {"model": "core.payloadkeyrequestmapping", "pk": 16, "fields": {"request": 1, "payloadkey": 3, "placeholder": "{5}", "date_created": "2019-12-01T09:47:41.025Z", "date_modified": "2019-12-01T09:47:41.025Z"}}, {"model": "core.requestheadermapping", "pk": 1, "fields": {"request": 1, "headers": 2, "date_created": "2019-12-01T09:54:07.399Z", "date_modified": "2019-12-01T09:54:07.399Z"}}, {"model": "core.response", "pk": 1, "fields": {"request": 1, "KeyName": "statusDescription", "isArray": false, "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt", "date_created": "2019-12-01T09:51:26.211Z", "date_modified": "2019-12-01T09:51:58.813Z"}}, {"model": "core.response", "pk": 2, "fields": {"request": 1, "KeyName": "receiptNumber", "isArray": false, "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->receipt", "date_created": "2019-12-01T09:51:50.678Z", "date_modified": "2019-12-01T09:51:50.678Z"}}, {"model": "core.response", "pk": 3, "fields": {"request": 1, "KeyName": "narration", "isArray": false, "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt", "date_created": "2019-12-01T09:52:25.395Z", "date_modified": "2019-12-01T09:52:25.395Z"}}, {"model": "core.processflow", "pk": 1, "fields": {"request": 1, "serviceID": "1912", "serviceCode": "MZ_AGUASPOSTPAID", "priority": 0, "processname": "postpayment", "processDesc": "This the request to actually fullfill the paymenet request", "isFinal": true, "date_created": "2019-12-01T09:49:03.271Z", "date_modified": "2019-12-01T09:49:03.271Z"}}, {"model": "core.clientstaticconfspair", "pk": 1, "fields": {"client": 1, "key": "OPNAME", "value": "TEST_CELLULANT", "date_created": "2019-12-01T09:26:26.787Z", "date_modified": "2019-12-01T09:26:26.787Z"}}, {"model": "core.clientstaticconfspair", "pk": 2, "fields": {"client": 1, "key": "PASSWORD", "value": "PWD_TEST_CELLULANT", "date_created": "2019-12-01T09:26:37.770Z", "date_modified": "2019-12-01T09:26:37.770Z"}}, {"model": "core.clientstaticconfspair", "pk": 3, "fields": {"client": 1, "key": "COMPANYNAME", "value": "Cellulant Mozambique", "date_created": "2019-12-01T09:26:53.662Z", "date_modified": "2019-12-01T09:26:53.662Z"}}, {"model": "core.clientstaticconfspair", "pk": 4, "fields": {"client": 1, "key": "RECEIPT_FORMAT", "value": "POR_FORMATED_50", "date_created": "2019-12-01T09:27:19.451Z", "date_modified": "2019-12-01T09:27:19.451Z"}}, {"model": "core.clientstaticconfspair", "pk": 5, "fields": {"client": 1, "key": "TERMINAL_ID", "value": "CELLULANT", "date_created": "2019-12-01T09:27:46.191Z", "date_modified": "2019-12-01T09:27:46.191Z"}}, {"model": "core.clientstaticconfspair", "pk": 6, "fields": {"client": 1, "key": "CHANNEL", "value": "POS", "date_created": "2019-12-01T09:28:12.385Z", "date_modified": "2019-12-01T09:28:12.386Z"}}, {"model": "core.clientstaticconfspair", "pk": 7, "fields": {"client": 1, "key": "OPERATOR", "value": "BILLPAYMENT", "date_created": "2019-12-01T09:28:36.610Z", "date_modified": "2019-12-01T09:28:36.610Z"}}]
+[
+    {
+        "model": "core.clientapisetup",
+        "pk": 1,
+        "fields": {
+            "requestType": "JSON",
+            "hasCertificate": false,
+            "certificate": "",
+            "clientName": "TEST_JOVIXE",
+            "apiConnection": "HTTP",
+            "date_created": "2019-12-01T09:25:28.879Z",
+            "date_modified": "2019-12-01T09:25:28.879Z"
+        }
+    },
+    {
+        "model": "core.httpheaders",
+        "pk": 1,
+        "fields": {
+            "key": "Content-Type",
+            "value": "application/json",
+            "date_created": "2019-12-01T09:53:44.352Z",
+            "date_modified": "2019-12-01T09:53:44.352Z"
+        }
+    },
+    {
+        "model": "core.httpheaders",
+        "pk": 2,
+        "fields": {
+            "key": "Content-Type",
+            "value": "text/xml;charset=UTF-8",
+            "date_created": "2019-12-01T09:53:50.574Z",
+            "date_modified": "2019-12-01T09:53:50.574Z"
+        }
+    },
+    {
+        "model": "core.requests",
+        "pk": 1,
+        "fields": {
+            "requestDestinationClient": 1,
+            "uri": "https://topupretail.com:18880/Service.asmx?WSDL",
+            "requestTemplate": "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://topupretail.com/\"><SOAP-ENV:Body><ns1:AquaPayment><ns1:req><ns1:terminalMsgID>{0}</ns1:terminalMsgID><ns1:terminalID>{1}</ns1:terminalID><ns1:msgID>{2}</ns1:msgID><ns1:authCred><ns1:opName>{3}</ns1:opName><ns1:password>{4}</ns1:password></ns1:authCred><ns1:clientNumber>{5}</ns1:clientNumber><ns1:entityNumber>{6}</ns1:entityNumber><ns1:documentTypeID>{7}</ns1:documentTypeID><ns1:documentYear>{8}</ns1:documentYear><ns1:documentNumber>{9}</ns1:documentNumber><ns1:clientName>{10}</ns1:clientName><ns1:purchaseValue>{11}</ns1:purchaseValue><ns1:receiptFormat>{12}</ns1:receiptFormat><ns1:terminalLocation/><ns1:terminalChannel>{13}</ns1:terminalChannel><ns1:terminalCompanyName>{14}</ns1:terminalCompanyName><ns1:terminalOperator>{15}</ns1:terminalOperator></ns1:req></ns1:AquaPayment></SOAP-ENV:Body></SOAP-ENV:Envelope>",
+            "date_created": "2019-12-01T09:37:34.607Z",
+            "date_modified": "2019-12-01T09:37:34.607Z",
+            "successResponseKey": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->hasFault",
+            "successExpectedValue": "False"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 1,
+        "fields": {
+            "KeyName": "beepTransactionID",
+            "Description": "",
+            "date_created": "2019-12-01T09:30:46.852Z",
+            "date_modified": "2019-12-01T09:30:46.852Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 2,
+        "fields": {
+            "KeyName": "narration",
+            "Description": "",
+            "date_created": "2019-12-01T09:30:54.760Z",
+            "date_modified": "2019-12-01T09:30:54.760Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 3,
+        "fields": {
+            "KeyName": "accountNumber",
+            "Description": "",
+            "date_created": "2019-12-01T09:30:59.523Z",
+            "date_modified": "2019-12-01T09:30:59.523Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 4,
+        "fields": {
+            "KeyName": "customerName",
+            "Description": "",
+            "date_created": "2019-12-01T09:31:04.375Z",
+            "date_modified": "2019-12-01T09:31:04.375Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 5,
+        "fields": {
+            "KeyName": "amount",
+            "Description": "",
+            "date_created": "2019-12-01T09:31:08.766Z",
+            "date_modified": "2019-12-01T09:31:08.766Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 6,
+        "fields": {
+            "KeyName": "paymentExtraData",
+            "Description": "",
+            "date_created": "2019-12-01T09:31:13.634Z",
+            "date_modified": "2019-12-01T09:31:13.634Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 7,
+        "fields": {
+            "KeyName": "currencyCode",
+            "Description": "",
+            "date_created": "2019-12-01T09:32:06.358Z",
+            "date_modified": "2019-12-01T09:32:06.358Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 8,
+        "fields": {
+            "KeyName": "MSISDN",
+            "Description": "",
+            "date_created": "2019-12-01T09:32:14.080Z",
+            "date_modified": "2019-12-01T09:32:14.080Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 9,
+        "fields": {
+            "KeyName": "STATICS",
+            "Description": "",
+            "date_created": "2019-12-01T09:32:20.088Z",
+            "date_modified": "2019-12-01T09:32:20.088Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 10,
+        "fields": {
+            "KeyName": "payerClientCode",
+            "Description": "",
+            "date_created": "2019-12-01T09:33:25.422Z",
+            "date_modified": "2019-12-01T09:33:25.422Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 11,
+        "fields": {
+            "KeyName": "payerClientID",
+            "Description": "",
+            "date_created": "2019-12-01T09:33:31.332Z",
+            "date_modified": "2019-12-01T09:33:31.332Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 12,
+        "fields": {
+            "KeyName": "paymentID",
+            "Description": "",
+            "date_created": "2019-12-01T09:33:49.272Z",
+            "date_modified": "2019-12-01T09:33:49.272Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 13,
+        "fields": {
+            "KeyName": "payerTransactionID",
+            "Description": "",
+            "date_created": "2019-12-01T09:33:56.748Z",
+            "date_modified": "2019-12-01T09:33:56.748Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 14,
+        "fields": {
+            "KeyName": "serviceID",
+            "Description": "",
+            "date_created": "2019-12-01T09:34:13.301Z",
+            "date_modified": "2019-12-01T09:34:13.301Z"
+        }
+    },
+    {
+        "model": "core.payloadkeys",
+        "pk": 15,
+        "fields": {
+            "KeyName": "serviceCode",
+            "Description": "",
+            "date_created": "2019-12-01T09:34:24.055Z",
+            "date_modified": "2019-12-01T09:34:24.055Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 1,
+        "fields": {
+            "request": 1,
+            "payloadkey": 1,
+            "placeholder": "{2}",
+            "date_created": "2019-12-01T09:40:11.856Z",
+            "date_modified": "2019-12-01T09:40:11.856Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 2,
+        "fields": {
+            "request": 1,
+            "payloadkey": 1,
+            "placeholder": "{0}",
+            "date_created": "2019-12-01T09:40:32.018Z",
+            "date_modified": "2019-12-01T09:40:32.018Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 3,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{15}$OPERATOR",
+            "date_created": "2019-12-01T09:41:01.129Z",
+            "date_modified": "2019-12-01T09:41:01.129Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 4,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{14}$COMPANYNAME",
+            "date_created": "2019-12-01T09:41:58.573Z",
+            "date_modified": "2019-12-01T09:41:58.573Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 5,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{13}$CHANNEL",
+            "date_created": "2019-12-01T09:42:14.553Z",
+            "date_modified": "2019-12-01T09:42:14.553Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 6,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{12}$RECEIPT_FORMAT",
+            "date_created": "2019-12-01T09:42:33.898Z",
+            "date_modified": "2019-12-01T09:42:33.898Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 7,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{4}$PASSWORD",
+            "date_created": "2019-12-01T09:42:58.832Z",
+            "date_modified": "2019-12-01T09:42:58.832Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 8,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{3}$OPNAME",
+            "date_created": "2019-12-01T09:43:16.045Z",
+            "date_modified": "2019-12-01T09:43:16.045Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 9,
+        "fields": {
+            "request": 1,
+            "payloadkey": 9,
+            "placeholder": "{1}$TERMINAL_ID",
+            "date_created": "2019-12-01T09:44:08.582Z",
+            "date_modified": "2019-12-01T09:44:08.582Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 10,
+        "fields": {
+            "request": 1,
+            "payloadkey": 6,
+            "placeholder": "{6}$entityNumber",
+            "date_created": "2019-12-01T09:44:56.257Z",
+            "date_modified": "2019-12-01T09:45:38.457Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 11,
+        "fields": {
+            "request": 1,
+            "payloadkey": 6,
+            "placeholder": "{9}$documentNumber",
+            "date_created": "2019-12-01T09:45:21.241Z",
+            "date_modified": "2019-12-01T09:45:21.241Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 12,
+        "fields": {
+            "request": 1,
+            "payloadkey": 6,
+            "placeholder": "{7}$documentTypeID",
+            "date_created": "2019-12-01T09:46:23.391Z",
+            "date_modified": "2019-12-01T09:46:23.391Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 13,
+        "fields": {
+            "request": 1,
+            "payloadkey": 6,
+            "placeholder": "{8}$documentYear",
+            "date_created": "2019-12-01T09:46:40.922Z",
+            "date_modified": "2019-12-01T09:46:40.922Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 14,
+        "fields": {
+            "request": 1,
+            "payloadkey": 6,
+            "placeholder": "{10}$clientName",
+            "date_created": "2019-12-01T09:47:21.981Z",
+            "date_modified": "2019-12-01T09:47:21.981Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 15,
+        "fields": {
+            "request": 1,
+            "payloadkey": 5,
+            "placeholder": "{11}",
+            "date_created": "2019-12-01T09:47:30.611Z",
+            "date_modified": "2019-12-01T09:47:30.611Z"
+        }
+    },
+    {
+        "model": "core.payloadkeyrequestmapping",
+        "pk": 16,
+        "fields": {
+            "request": 1,
+            "payloadkey": 3,
+            "placeholder": "{5}",
+            "date_created": "2019-12-01T09:47:41.025Z",
+            "date_modified": "2019-12-01T09:47:41.025Z"
+        }
+    },
+    {
+        "model": "core.requestheadermapping",
+        "pk": 1,
+        "fields": {
+            "request": 1,
+            "headers": 2,
+            "date_created": "2019-12-01T09:54:07.399Z",
+            "date_modified": "2019-12-01T09:54:07.399Z"
+        }
+    },
+    {
+        "model": "core.response",
+        "pk": 1,
+        "fields": {
+            "request": 1,
+            "KeyName": "statusDescription",
+            "isArray": false,
+            "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt",
+            "date_created": "2019-12-01T09:51:26.211Z",
+            "date_modified": "2019-12-01T09:51:58.813Z"
+        }
+    },
+    {
+        "model": "core.response",
+        "pk": 2,
+        "fields": {
+            "request": 1,
+            "KeyName": "receiptNumber",
+            "isArray": false,
+            "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->receipt",
+            "date_created": "2019-12-01T09:51:50.678Z",
+            "date_modified": "2019-12-01T09:51:50.678Z"
+        }
+    },
+    {
+        "model": "core.response",
+        "pk": 3,
+        "fields": {
+            "request": 1,
+            "KeyName": "narration",
+            "isArray": false,
+            "valueKeyName": "soap:Envelope->soap:Body-->AquaPaymentResponse-->AquaPaymentResult-->smsreceipt",
+            "date_created": "2019-12-01T09:52:25.395Z",
+            "date_modified": "2019-12-01T09:52:25.395Z"
+        }
+    },
+    {
+        "model": "core.processflow",
+        "pk": 1,
+        "fields": {
+            "request": 1,
+            "serviceID": "1912",
+            "serviceCode": "MZ_AGUASPOSTPAID",
+            "priority": 0,
+            "processname": "postpayment",
+            "processDesc": "This the request to actually fullfill the paymenet request",
+            "isFinal": true,
+            "date_created": "2019-12-01T09:49:03.271Z",
+            "date_modified": "2019-12-01T09:49:03.271Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 1,
+        "fields": {
+            "client": 1,
+            "key": "OPNAME",
+            "value": "TEST_CELLULANT",
+            "date_created": "2019-12-01T09:26:26.787Z",
+            "date_modified": "2019-12-01T09:26:26.787Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 2,
+        "fields": {
+            "client": 1,
+            "key": "PASSWORD",
+            "value": "PWD_TEST_CELLULANT",
+            "date_created": "2019-12-01T09:26:37.770Z",
+            "date_modified": "2019-12-01T09:26:37.770Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 3,
+        "fields": {
+            "client": 1,
+            "key": "COMPANYNAME",
+            "value": "Cellulant Mozambique",
+            "date_created": "2019-12-01T09:26:53.662Z",
+            "date_modified": "2019-12-01T09:26:53.662Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 4,
+        "fields": {
+            "client": 1,
+            "key": "RECEIPT_FORMAT",
+            "value": "POR_FORMATED_50",
+            "date_created": "2019-12-01T09:27:19.451Z",
+            "date_modified": "2019-12-01T09:27:19.451Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 5,
+        "fields": {
+            "client": 1,
+            "key": "TERMINAL_ID",
+            "value": "CELLULANT",
+            "date_created": "2019-12-01T09:27:46.191Z",
+            "date_modified": "2019-12-01T09:27:46.191Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 6,
+        "fields": {
+            "client": 1,
+            "key": "CHANNEL",
+            "value": "POS",
+            "date_created": "2019-12-01T09:28:12.385Z",
+            "date_modified": "2019-12-01T09:28:12.386Z"
+        }
+    },
+    {
+        "model": "core.clientstaticconfspair",
+        "pk": 7,
+        "fields": {
+            "client": 1,
+            "key": "OPERATOR",
+            "value": "BILLPAYMENT",
+            "date_created": "2019-12-01T09:28:36.610Z",
+            "date_modified": "2019-12-01T09:28:36.610Z"
+        }
+    }
+]

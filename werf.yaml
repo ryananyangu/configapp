@@ -1,6 +1,0 @@
-project: integrationconfigapp
-configVersion: 1
----
-image: config-%%%CI_PIPELINE_ID%%%
-dockerfile: Dockerfile
-context: .
